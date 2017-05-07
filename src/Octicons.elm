@@ -1,7 +1,7 @@
 module Octicons exposing (..)
 {-| @docs
 # Configuration
-@docs size, style, width, height, fillRule, viewBox, margin, color
+@docs size, style, width, height, fillRule, margin, color
 
 # Icons Helpers
 @docs alert, arrowDown, arrowLeft, arrowRight,arrowSmallDown
@@ -86,9 +86,9 @@ type alias Options = Octicons.Internal.Options
 
 {-|
 -}
-pathIconWithOptions : String -> Options -> Html.Html msg
-pathIconWithOptions path options =
-    iconSVG options
+pathIconWithOptions : String -> String -> Options -> Html.Html msg
+pathIconWithOptions path viewBox options =
+    iconSVG viewBox options
         []
         [ Svg.path
             [ Svg.Attributes.d path
@@ -100,9 +100,9 @@ pathIconWithOptions path options =
 
 {-|
 -}
-polygonIconWithOptions : String -> Options -> Html.Html msg
-polygonIconWithOptions points options =
-    iconSVG options
+polygonIconWithOptions : String -> String -> Options -> Html.Html msg
+polygonIconWithOptions points viewBox options =
+    iconSVG viewBox options
         []
         [ Svg.polygon
             [ Svg.Attributes.points points
@@ -116,7 +116,7 @@ polygonIconWithOptions points options =
 -}
 defaultOptions : Options
 defaultOptions =
-    { name = "", color = "black", width = 16, height = 16, fillRule = "evenodd", viewBox = "0 0 16 16", margin = Nothing, style = Nothing }
+    { name = "", color = "black", width = 16, height = 16, fillRule = "evenodd", margin = Nothing, style = Nothing }
 
 
 {-|
@@ -170,16 +170,9 @@ fillRule fillRule options =
 
 {-|
 -}
-viewBox : String -> Options -> Options
-viewBox viewBox options =
-    { options | viewBox = viewBox }
-
-
-{-|
--}
 alert : Html msg
 alert =
-    pathIconWithOptions alertPath { defaultOptions | name = "alert" }
+    pathIconWithOptions alertPath "0 0 16 16" { defaultOptions | name = "alert" }
 
 
 {-|
@@ -193,7 +186,7 @@ alertPath =
 -}
 arrowDown : Html msg
 arrowDown =
-    polygonIconWithOptions arrowDownPolygon { defaultOptions | name = "arrowDown", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions arrowDownPolygon "0 0 10 16" { defaultOptions | name = "arrowDown", width = 10 }
 
 
 {-|
@@ -206,7 +199,7 @@ arrowDownPolygon =
 -}
 arrowLeft : Html msg
 arrowLeft =
-    polygonIconWithOptions arrowLeftPolygon { defaultOptions | name = "arrowLeft", width = 10, viewBox = "0 0 10 16" }
+    polygonIconWithOptions arrowLeftPolygon "0 0 10 16" { defaultOptions | name = "arrowLeft", width = 10 }
 
 {-|
 -}
@@ -218,7 +211,7 @@ arrowLeftPolygon =
 -}
 arrowRight : Html msg
 arrowRight =
-    polygonIconWithOptions arrowRightPolygon { defaultOptions | name = "arrowRight", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions arrowRightPolygon "0 0 10 16" { defaultOptions | name = "arrowRight", width = 10 }
 
 
 {-|
@@ -231,7 +224,7 @@ arrowRightPolygon =
 -}
 arrowSmallDown : Html msg
 arrowSmallDown =
-    polygonIconWithOptions arrowSmallDownPolygon { defaultOptions | name = "arrowSmallDown", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions arrowSmallDownPolygon "0 0 6 16" { defaultOptions | name = "arrowSmallDown", width = 6 }
 
 {-|
 -}
@@ -243,7 +236,7 @@ arrowSmallDownPolygon =
 -}
 arrowSmallLeft : Html msg
 arrowSmallLeft =
-    polygonIconWithOptions arrowSmallLeftPolygon { defaultOptions | name = "arrowSmallLeft", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions arrowSmallLeftPolygon "0 0 6 16" { defaultOptions | name = "arrowSmallLeft", width = 6 }
 
 {-|
 -}
@@ -255,7 +248,7 @@ arrowSmallLeftPolygon =
 -}
 arrowSmallRight : Html msg
 arrowSmallRight =
-    polygonIconWithOptions arrowSmallRightPolygon { defaultOptions | name = "arrowSmallRight", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions arrowSmallRightPolygon "0 0 6 16" { defaultOptions | name = "arrowSmallRight", width = 6 }
 
 {-|
 -}
@@ -267,7 +260,7 @@ arrowSmallRightPolygon =
 -}
 arrowSmallUp : Html msg
 arrowSmallUp =
-    polygonIconWithOptions arrowSmallUpPolygon { defaultOptions | name = "arrowSmallUp", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions arrowSmallUpPolygon "0 0 6 16" { defaultOptions | name = "arrowSmallUp", width = 6 }
 
 {-|
 -}
@@ -279,7 +272,7 @@ arrowSmallUpPolygon =
 -}
 arrowUp : Html msg
 arrowUp =
-    polygonIconWithOptions arrowUpPolygon { defaultOptions | name = "arrowUp", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions arrowUpPolygon "0 0 10 16" { defaultOptions | name = "arrowUp", width = 10 }
 
 {-|
 -}
@@ -291,7 +284,7 @@ arrowUpPolygon =
 -}
 beaker : Html msg
 beaker =
-    pathIconWithOptions beakerPath { defaultOptions | name = "beaker" }
+    pathIconWithOptions beakerPath "0 0 16 16" { defaultOptions | name = "beaker" }
 
 
 {-|
@@ -304,7 +297,7 @@ beakerPath =
 -}
 bell : Html msg
 bell =
-    pathIconWithOptions bellPath { defaultOptions | name = "bell", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions bellPath "0 0 14 16" { defaultOptions | name = "bell", width = 14 }
 
 {-|
 -}
@@ -316,7 +309,7 @@ bellPath =
 -}
 bold : Html msg
 bold =
-    pathIconWithOptions boldPath { defaultOptions | name = "bold", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions boldPath "0 0 10 16" { defaultOptions | name = "bold", width = 10 }
 
 {-|
 -}
@@ -328,7 +321,7 @@ boldPath =
 -}
 book : Html msg
 book =
-    pathIconWithOptions bookPath { defaultOptions | name = "book" }
+    pathIconWithOptions bookPath "0 0 16 16" { defaultOptions | name = "book" }
 
 {-|
 -}
@@ -340,7 +333,7 @@ bookPath =
 -}
 bookmark : Html msg
 bookmark =
-    pathIconWithOptions bookmarkPath { defaultOptions | name = "bookmark", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions bookmarkPath "0 0 10 16" { defaultOptions | name = "bookmark", width = 10 }
 
 {-|
 -}
@@ -352,7 +345,7 @@ bookmarkPath =
 -}
 briefcase : Html msg
 briefcase =
-    pathIconWithOptions briefcasePath { defaultOptions | name = "briefcase", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions briefcasePath "0 0 14 16" { defaultOptions | name = "briefcase", width = 14 }
 
 {-|
 -}
@@ -364,7 +357,7 @@ briefcasePath =
 -}
 broadcast : Html msg
 broadcast =
-    pathIconWithOptions broadcastPath { defaultOptions | name = "broadcast" }
+    pathIconWithOptions broadcastPath "0 0 16 16" { defaultOptions | name = "broadcast" }
 
 {-|
 -}
@@ -376,7 +369,7 @@ broadcastPath =
 -}
 browser : Html msg
 browser =
-    pathIconWithOptions browserPath { defaultOptions | name = "browser", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions browserPath "0 0 14 16" { defaultOptions | name = "browser", width = 14 }
 
 {-|
 -}
@@ -388,7 +381,7 @@ browserPath =
 -}
 bug : Html msg
 bug =
-    pathIconWithOptions bugPath { defaultOptions | name = "bug" }
+    pathIconWithOptions bugPath "0 0 16 16" { defaultOptions | name = "bug" }
 
 {-|
 -}
@@ -400,7 +393,7 @@ bugPath =
 -}
 calendar : Html msg
 calendar =
-    pathIconWithOptions calendarPath { defaultOptions | name = "calendar", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions calendarPath "0 0 14 16" { defaultOptions | name = "calendar", width = 14 }
 
 {-|
 -}
@@ -412,7 +405,7 @@ calendarPath =
 -}
 check : Html msg
 check =
-    polygonIconWithOptions checkPolygon { defaultOptions | name = "check", width = 12, viewBox =  "0 0 12 16" }
+    polygonIconWithOptions checkPolygon "0 0 12 16" { defaultOptions | name = "check", width = 12 }
 
 {-|
 -}
@@ -424,7 +417,7 @@ checkPolygon =
 -}
 checklist : Html msg
 checklist =
-    pathIconWithOptions checklistPath { defaultOptions | name = "checklist" }
+    pathIconWithOptions checklistPath "0 0 16 16" { defaultOptions | name = "checklist" }
 
 {-|
 -}
@@ -436,7 +429,7 @@ checklistPath =
 -}
 chevronDown : Html msg
 chevronDown =
-    polygonIconWithOptions chevronDownPolygon { defaultOptions | name = "chevronDown", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions chevronDownPolygon "0 0 10 16" { defaultOptions | name = "chevronDown", width = 10 }
 
 {-|
 -}
@@ -448,7 +441,7 @@ chevronDownPolygon =
 -}
 chevronLeft : Html msg
 chevronLeft =
-    polygonIconWithOptions chevronLeftPolygon { defaultOptions | name = "chevronLeft", width = 8, viewBox =  "0 0 8 16" }
+    polygonIconWithOptions chevronLeftPolygon "0 0 8 16" { defaultOptions | name = "chevronLeft", width = 8 }
 
 {-|
 -}
@@ -460,7 +453,7 @@ chevronLeftPolygon =
 -}
 chevronRight : Html msg
 chevronRight =
-    polygonIconWithOptions chevronRightPolygon { defaultOptions | name = "chevronRight", width = 8, viewBox =  "0 0 8 16" }
+    polygonIconWithOptions chevronRightPolygon "0 0 8 16" { defaultOptions | name = "chevronRight", width = 8 }
 
 {-|
 -}
@@ -472,7 +465,7 @@ chevronRightPolygon =
 -}
 chevronUp : Html msg
 chevronUp =
-    polygonIconWithOptions chevronUpPolygon { defaultOptions | name = "chevronUp", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions chevronUpPolygon "0 0 10 16" { defaultOptions | name = "chevronUp", width = 10 }
 
 {-|
 -}
@@ -484,7 +477,7 @@ chevronUpPolygon =
 -}
 circleSlash : Html msg
 circleSlash =
-    pathIconWithOptions circleSlashPath { defaultOptions | name = "circleSlash", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions circleSlashPath "0 0 14 16" { defaultOptions | name = "circleSlash", width = 14 }
 
 {-|
 -}
@@ -496,7 +489,7 @@ circleSlashPath =
 -}
 circuitBoard : Html msg
 circuitBoard =
-    pathIconWithOptions circuitBoardPath { defaultOptions | name = "circuitBoard", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions circuitBoardPath "0 0 14 16" { defaultOptions | name = "circuitBoard", width = 14 }
 
 {-|
 -}
@@ -508,7 +501,7 @@ circuitBoardPath =
 -}
 clippy : Html msg
 clippy =
-    pathIconWithOptions clippyPath { defaultOptions | name = "clippy", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions clippyPath "0 0 14 16" { defaultOptions | name = "clippy", width = 14 }
 
 {-|
 -}
@@ -520,7 +513,7 @@ clippyPath =
 -}
 clock : Html msg
 clock =
-    pathIconWithOptions clockPath { defaultOptions | name = "clock", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions clockPath "0 0 14 16" { defaultOptions | name = "clock", width = 14 }
 
 {-|
 -}
@@ -532,7 +525,7 @@ clockPath =
 -}
 cloudDownload : Html msg
 cloudDownload =
-    pathIconWithOptions cloudDownloadPath { defaultOptions | name = "cloudDownload" }
+    pathIconWithOptions cloudDownloadPath "0 0 16 16" { defaultOptions | name = "cloudDownload" }
 
 {-|
 -}
@@ -544,7 +537,7 @@ cloudDownloadPath =
 -}
 cloudUpload : Html msg
 cloudUpload =
-    pathIconWithOptions cloudUploadPath { defaultOptions | name = "cloudUpload" }
+    pathIconWithOptions cloudUploadPath "0 0 16 16" { defaultOptions | name = "cloudUpload" }
 
 {-|
 -}
@@ -556,7 +549,7 @@ cloudUploadPath =
 -}
 code : Html msg
 code =
-    pathIconWithOptions codePath { defaultOptions | name = "code", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions codePath "0 0 14 16" { defaultOptions | name = "code", width = 14 }
 
 {-|
 -}
@@ -568,7 +561,7 @@ codePath =
 -}
 commentDiscussion : Html msg
 commentDiscussion =
-    pathIconWithOptions commentDiscussionPath { defaultOptions | name = "commentDiscussion" }
+    pathIconWithOptions commentDiscussionPath "0 0 16 16" { defaultOptions | name = "commentDiscussion" }
 
 {-|
 -}
@@ -580,7 +573,7 @@ commentDiscussionPath =
 -}
 comment : Html msg
 comment =
-    pathIconWithOptions commentPath { defaultOptions | name = "comment" }
+    pathIconWithOptions commentPath "0 0 16 16" { defaultOptions | name = "comment" }
 
 {-|
 -}
@@ -592,7 +585,7 @@ commentPath =
 -}
 creditCard : Html msg
 creditCard =
-    pathIconWithOptions creditCardPath { defaultOptions | name = "creditCard" }
+    pathIconWithOptions creditCardPath "0 0 16 16" { defaultOptions | name = "creditCard" }
 
 {-|
 -}
@@ -604,7 +597,7 @@ creditCardPath =
 -}
 dash : Html msg
 dash =
-    polygonIconWithOptions dashPolygon { defaultOptions | name = "dash", width = 8, viewBox =  "0 0 8 16" }
+    polygonIconWithOptions dashPolygon "0 0 8 16" { defaultOptions | name = "dash", width = 8 }
 
 {-|
 -}
@@ -616,7 +609,7 @@ dashPolygon =
 -}
 dashboard : Html msg
 dashboard =
-    pathIconWithOptions dashboardPath { defaultOptions | name = "dashboard" }
+    pathIconWithOptions dashboardPath "0 0 16 16" { defaultOptions | name = "dashboard" }
 
 {-|
 -}
@@ -628,7 +621,7 @@ dashboardPath =
 -}
 database : Html msg
 database =
-    pathIconWithOptions databasePath { defaultOptions | name = "database", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions databasePath "0 0 12 16" { defaultOptions | name = "database", width = 12 }
 
 {-|
 -}
@@ -640,7 +633,7 @@ databasePath =
 -}
 desktopDownload : Html msg
 desktopDownload =
-    pathIconWithOptions desktopDownloadPath { defaultOptions | name = "desktopDownload" }
+    pathIconWithOptions desktopDownloadPath "0 0 16 16" { defaultOptions | name = "desktopDownload" }
 
 {-|
 -}
@@ -652,7 +645,7 @@ desktopDownloadPath =
 -}
 deviceCameraVideo : Html msg
 deviceCameraVideo =
-    pathIconWithOptions deviceCameraVideoPath { defaultOptions | name = "deviceCameraVideo" }
+    pathIconWithOptions deviceCameraVideoPath "0 0 16 16" { defaultOptions | name = "deviceCameraVideo" }
 
 {-|
 -}
@@ -664,7 +657,7 @@ deviceCameraVideoPath =
 -}
 deviceCamera : Html msg
 deviceCamera =
-    pathIconWithOptions deviceCameraPath { defaultOptions | name = "deviceCamera" }
+    pathIconWithOptions deviceCameraPath "0 0 16 16" { defaultOptions | name = "deviceCamera" }
 
 {-|
 -}
@@ -676,7 +669,7 @@ deviceCameraPath =
 -}
 deviceDesktop : Html msg
 deviceDesktop =
-    pathIconWithOptions deviceDesktopPath { defaultOptions | name = "deviceDesktop" }
+    pathIconWithOptions deviceDesktopPath "0 0 16 16" { defaultOptions | name = "deviceDesktop" }
 
 {-|
 -}
@@ -688,7 +681,7 @@ deviceDesktopPath =
 -}
 deviceMobile : Html msg
 deviceMobile =
-    pathIconWithOptions deviceMobilePath { defaultOptions | name = "deviceMobile", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions deviceMobilePath "0 0 10 16" { defaultOptions | name = "deviceMobile", width = 10 }
 
 {-|
 -}
@@ -700,7 +693,7 @@ deviceMobilePath =
 -}
 diffAdded : Html msg
 diffAdded =
-    pathIconWithOptions diffAddedPath { defaultOptions | name = "diffAdded", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions diffAddedPath "0 0 14 16" { defaultOptions | name = "diffAdded", width = 14 }
 
 {-|
 -}
@@ -712,7 +705,7 @@ diffAddedPath =
 -}
 diffIgnored : Html msg
 diffIgnored =
-    pathIconWithOptions diffIgnoredPath { defaultOptions | name = "diffIgnored", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions diffIgnoredPath "0 0 14 16" { defaultOptions | name = "diffIgnored", width = 14 }
 
 {-|
 -}
@@ -724,7 +717,7 @@ diffIgnoredPath =
 -}
 diffModified : Html msg
 diffModified =
-    pathIconWithOptions diffModifiedPath { defaultOptions | name = "diffModified", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions diffModifiedPath "0 0 14 16" { defaultOptions | name = "diffModified", width = 14 }
 
 {-|
 -}
@@ -736,7 +729,7 @@ diffModifiedPath =
 -}
 diffRemoved : Html msg
 diffRemoved =
-    pathIconWithOptions diffRemovedPath { defaultOptions | name = "diffRemoved", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions diffRemovedPath "0 0 14 16" { defaultOptions | name = "diffRemoved", width = 14 }
 
 {-|
 -}
@@ -748,7 +741,7 @@ diffRemovedPath =
 -}
 diffRenamed : Html msg
 diffRenamed =
-    pathIconWithOptions diffRenamedPath { defaultOptions | name = "diffRenamed", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions diffRenamedPath "0 0 14 16" { defaultOptions | name = "diffRenamed", width = 14 }
 
 {-|
 -}
@@ -760,7 +753,7 @@ diffRenamedPath =
 -}
 diff : Html msg
 diff =
-    pathIconWithOptions diffPath { defaultOptions | name = "diff", width = 13, viewBox =  "0 0 13 16" }
+    pathIconWithOptions diffPath "0 0 13 16" { defaultOptions | name = "diff", width = 13 }
 
 {-|
 -}
@@ -772,7 +765,7 @@ diffPath =
 -}
 ellipses : Html msg
 ellipses =
-    pathIconWithOptions ellipsesPath { defaultOptions | name = "ellipses", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions ellipsesPath "0 0 12 16" { defaultOptions | name = "ellipses", width = 12 }
 
 {-|
 -}
@@ -784,7 +777,7 @@ ellipsesPath =
 -}
 ellipsis : Html msg
 ellipsis =
-    pathIconWithOptions ellipsisPath { defaultOptions | name = "ellipsis", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions ellipsisPath "0 0 12 16" { defaultOptions | name = "ellipsis", width = 12 }
 
 {-|
 -}
@@ -796,7 +789,7 @@ ellipsisPath =
 -}
 eye : Html msg
 eye =
-    pathIconWithOptions eyePath { defaultOptions | name = "eye" }
+    pathIconWithOptions eyePath "0 0 16 16" { defaultOptions | name = "eye" }
 
 {-|
 -}
@@ -808,7 +801,7 @@ eyePath =
 -}
 fileBinary : Html msg
 fileBinary =
-    pathIconWithOptions fileBinaryPath { defaultOptions | name = "fileBinary", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileBinaryPath "0 0 12 16" { defaultOptions | name = "fileBinary", width = 12 }
 
 {-|
 -}
@@ -820,7 +813,7 @@ fileBinaryPath =
 -}
 fileCode : Html msg
 fileCode =
-    pathIconWithOptions fileCodePath { defaultOptions | name = "fileCode", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileCodePath "0 0 12 16" { defaultOptions | name = "fileCode", width = 12 }
 
 {-|
 -}
@@ -832,7 +825,7 @@ fileCodePath =
 -}
 fileDirectory : Html msg
 fileDirectory =
-    pathIconWithOptions fileDirectoryPath { defaultOptions | name = "fileDirectory", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions fileDirectoryPath "0 0 14 16" { defaultOptions | name = "fileDirectory", width = 14 }
 
 {-|
 -}
@@ -844,7 +837,7 @@ fileDirectoryPath =
 -}
 fileMedia : Html msg
 fileMedia =
-    pathIconWithOptions fileMediaPath { defaultOptions | name = "fileMedia", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileMediaPath "0 0 12 16" { defaultOptions | name = "fileMedia", width = 12 }
 
 {-|
 -}
@@ -856,7 +849,7 @@ fileMediaPath =
 -}
 filePdf : Html msg
 filePdf =
-    pathIconWithOptions filePdfPath { defaultOptions | name = "filePdf", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions filePdfPath "0 0 12 16" { defaultOptions | name = "filePdf", width = 12 }
 
 {-|
 -}
@@ -868,7 +861,7 @@ filePdfPath =
 -}
 fileSubmodule : Html msg
 fileSubmodule =
-    pathIconWithOptions fileSubmodulePath { defaultOptions | name = "fileSubmodule", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions fileSubmodulePath "0 0 14 16" { defaultOptions | name = "fileSubmodule", width = 14 }
 
 {-|
 -}
@@ -880,7 +873,7 @@ fileSubmodulePath =
 -}
 fileSymlinkDirectory : Html msg
 fileSymlinkDirectory =
-    pathIconWithOptions fileSymlinkDirectoryPath { defaultOptions | name = "fileSymlinkDirectory", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions fileSymlinkDirectoryPath "0 0 14 16" { defaultOptions | name = "fileSymlinkDirectory", width = 14 }
 
 {-|
 -}
@@ -892,7 +885,7 @@ fileSymlinkDirectoryPath =
 -}
 fileSymlinkFile : Html msg
 fileSymlinkFile =
-    pathIconWithOptions fileSymlinkFilePath { defaultOptions | name = "fileSymlinkFile", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileSymlinkFilePath "0 0 12 16" { defaultOptions | name = "fileSymlinkFile", width = 12 }
 
 {-|
 -}
@@ -904,7 +897,7 @@ fileSymlinkFilePath =
 -}
 fileText : Html msg
 fileText =
-    pathIconWithOptions fileTextPath { defaultOptions | name = "fileText", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileTextPath "0 0 12 16" { defaultOptions | name = "fileText", width = 12 }
 
 {-|
 -}
@@ -916,7 +909,7 @@ fileTextPath =
 -}
 fileZip : Html msg
 fileZip =
-    pathIconWithOptions fileZipPath { defaultOptions | name = "fileZip", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions fileZipPath "0 0 12 16" { defaultOptions | name = "fileZip", width = 12 }
 
 {-|
 -}
@@ -928,7 +921,7 @@ fileZipPath =
 -}
 file : Html msg
 file =
-    pathIconWithOptions filePath { defaultOptions | name = "file", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions filePath "0 0 12 16" { defaultOptions | name = "file", width = 12 }
 
 {-|
 -}
@@ -940,7 +933,7 @@ filePath =
 -}
 flame : Html msg
 flame =
-    pathIconWithOptions flamePath { defaultOptions | name = "flame", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions flamePath "0 0 12 16" { defaultOptions | name = "flame", width = 12 }
 
 {-|
 -}
@@ -952,7 +945,7 @@ flamePath =
 -}
 fold : Html msg
 fold =
-    pathIconWithOptions foldPath { defaultOptions | name = "fold", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions foldPath "0 0 14 16" { defaultOptions | name = "fold", width = 14 }
 
 {-|
 -}
@@ -964,7 +957,7 @@ foldPath =
 -}
 gear : Html msg
 gear =
-    pathIconWithOptions gearPath { defaultOptions | name = "gear", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions gearPath "0 0 14 16" { defaultOptions | name = "gear", width = 14 }
 
 {-|
 -}
@@ -976,7 +969,7 @@ gearPath =
 -}
 gift : Html msg
 gift =
-    pathIconWithOptions giftPath { defaultOptions | name = "gift", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions giftPath "0 0 14 16" { defaultOptions | name = "gift", width = 14 }
 
 {-|
 -}
@@ -988,7 +981,7 @@ giftPath =
 -}
 gistSecret : Html msg
 gistSecret =
-    pathIconWithOptions gistSecretPath { defaultOptions | name = "gistSecret", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions gistSecretPath "0 0 14 16" { defaultOptions | name = "gistSecret", width = 14 }
 
 {-|
 -}
@@ -1000,7 +993,7 @@ gistSecretPath =
 -}
 gist : Html msg
 gist =
-    pathIconWithOptions gistPath { defaultOptions | name = "gist", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions gistPath "0 0 12 16" { defaultOptions | name = "gist", width = 12 }
 
 {-|
 -}
@@ -1012,7 +1005,7 @@ gistPath =
 -}
 gitBranch : Html msg
 gitBranch =
-    pathIconWithOptions gitBranchPath { defaultOptions | name = "gitBranch", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions gitBranchPath "0 0 10 16" { defaultOptions | name = "gitBranch", width = 10 }
 
 {-|
 -}
@@ -1024,7 +1017,7 @@ gitBranchPath =
 -}
 gitCommit : Html msg
 gitCommit =
-    pathIconWithOptions gitCommitPath { defaultOptions | name = "gitCommit", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions gitCommitPath "0 0 14 16" { defaultOptions | name = "gitCommit", width = 14 }
 
 {-|
 -}
@@ -1036,7 +1029,7 @@ gitCommitPath =
 -}
 gitCompare : Html msg
 gitCompare =
-    pathIconWithOptions gitComparePath { defaultOptions | name = "gitCompare", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions gitComparePath "0 0 14 16" { defaultOptions | name = "gitCompare", width = 14 }
 
 {-|
 -}
@@ -1048,7 +1041,7 @@ gitComparePath =
 -}
 gitMerge : Html msg
 gitMerge =
-    pathIconWithOptions gitMergePath { defaultOptions | name = "gitMerge", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions gitMergePath "0 0 12 16" { defaultOptions | name = "gitMerge", width = 12 }
 
 {-|
 -}
@@ -1060,7 +1053,7 @@ gitMergePath =
 -}
 gitPullRequest : Html msg
 gitPullRequest =
-    pathIconWithOptions gitPullRequestPath { defaultOptions | name = "gitPullRequest", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions gitPullRequestPath "0 0 12 16" { defaultOptions | name = "gitPullRequest", width = 12 }
 
 {-|
 -}
@@ -1072,7 +1065,7 @@ gitPullRequestPath =
 -}
 globe : Html msg
 globe =
-    pathIconWithOptions globePath { defaultOptions | name = "globe", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions globePath "0 0 14 16" { defaultOptions | name = "globe", width = 14 }
 
 {-|
 -}
@@ -1084,7 +1077,7 @@ globePath =
 -}
 grabber : Html msg
 grabber =
-    pathIconWithOptions grabberPath { defaultOptions | name = "grabber", width = 8, viewBox =  "0 0 8 16" }
+    pathIconWithOptions grabberPath "0 0 8 16" { defaultOptions | name = "grabber", width = 8 }
 
 {-|
 -}
@@ -1096,7 +1089,7 @@ grabberPath =
 -}
 graph : Html msg
 graph =
-    pathIconWithOptions graphPath { defaultOptions | name = "graph" }
+    pathIconWithOptions graphPath "0 0 16 16" { defaultOptions | name = "graph" }
 
 {-|
 -}
@@ -1108,7 +1101,7 @@ graphPath =
 -}
 heart : Html msg
 heart =
-    pathIconWithOptions heartPath { defaultOptions | name = "heart", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions heartPath "0 0 12 16" { defaultOptions | name = "heart", width = 12 }
 
 {-|
 -}
@@ -1120,7 +1113,7 @@ heartPath =
 -}
 history : Html msg
 history =
-    pathIconWithOptions historyPath { defaultOptions | name = "history", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions historyPath "0 0 14 16" { defaultOptions | name = "history", width = 14 }
 
 {-|
 -}
@@ -1132,7 +1125,7 @@ historyPath =
 -}
 home : Html msg
 home =
-    pathIconWithOptions homePath { defaultOptions | name = "home" }
+    pathIconWithOptions homePath "0 0 16 16" { defaultOptions | name = "home" }
 
 {-|
 -}
@@ -1144,7 +1137,7 @@ homePath =
 -}
 horizontalRule : Html msg
 horizontalRule =
-    pathIconWithOptions horizontalRulePath { defaultOptions | name = "horizontalRule", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions horizontalRulePath "0 0 10 16" { defaultOptions | name = "horizontalRule", width = 10 }
 
 {-|
 -}
@@ -1156,7 +1149,7 @@ horizontalRulePath =
 -}
 hubot : Html msg
 hubot =
-    pathIconWithOptions hubotPath { defaultOptions | name = "hubot", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions hubotPath "0 0 14 16" { defaultOptions | name = "hubot", width = 14 }
 
 {-|
 -}
@@ -1168,7 +1161,7 @@ hubotPath =
 -}
 inbox : Html msg
 inbox =
-    pathIconWithOptions inboxPath { defaultOptions | name = "inbox", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions inboxPath "0 0 14 16" { defaultOptions | name = "inbox", width = 14 }
 
 {-|
 -}
@@ -1180,7 +1173,7 @@ inboxPath =
 -}
 info : Html msg
 info =
-    pathIconWithOptions infoPath { defaultOptions | name = "info", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions infoPath "0 0 14 16" { defaultOptions | name = "info", width = 14 }
 
 {-|
 -}
@@ -1192,7 +1185,7 @@ infoPath =
 -}
 issueClosed : Html msg
 issueClosed =
-    pathIconWithOptions issueClosedPath { defaultOptions | name = "issueClosed" }
+    pathIconWithOptions issueClosedPath "0 0 16 16" { defaultOptions | name = "issueClosed" }
 
 {-|
 -}
@@ -1204,7 +1197,7 @@ issueClosedPath =
 -}
 issueOpened : Html msg
 issueOpened =
-    pathIconWithOptions issueOpenedPath { defaultOptions | name = "issueOpened", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions issueOpenedPath "0 0 14 16" { defaultOptions | name = "issueOpened", width = 14 }
 
 {-|
 -}
@@ -1216,7 +1209,7 @@ issueOpenedPath =
 -}
 issueReopened : Html msg
 issueReopened =
-    pathIconWithOptions issueReopenedPath { defaultOptions | name = "issueReopened", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions issueReopenedPath "0 0 14 16" { defaultOptions | name = "issueReopened", width = 14 }
 
 {-|
 -}
@@ -1228,7 +1221,7 @@ issueReopenedPath =
 -}
 italic : Html msg
 italic =
-    pathIconWithOptions italicPath { defaultOptions | name = "italic", width = 6, viewBox =  "0 0 6 16" }
+    pathIconWithOptions italicPath "0 0 6 16" { defaultOptions | name = "italic", width = 6 }
 
 {-|
 -}
@@ -1240,7 +1233,7 @@ italicPath =
 -}
 jersey : Html msg
 jersey =
-    pathIconWithOptions jerseyPath { defaultOptions | name = "jersey", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions jerseyPath "0 0 14 16" { defaultOptions | name = "jersey", width = 14 }
 
 {-|
 -}
@@ -1252,7 +1245,7 @@ jerseyPath =
 -}
 key : Html msg
 key =
-    pathIconWithOptions keyPath { defaultOptions | name = "key", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions keyPath "0 0 14 16" { defaultOptions | name = "key", width = 14 }
 
 {-|
 -}
@@ -1264,7 +1257,7 @@ keyPath =
 -}
 keyboard : Html msg
 keyboard =
-    pathIconWithOptions keyboardPath { defaultOptions | name = "keyboard" }
+    pathIconWithOptions keyboardPath "0 0 16 16" { defaultOptions | name = "keyboard" }
 
 {-|
 -}
@@ -1276,7 +1269,7 @@ keyboardPath =
 -}
 law : Html msg
 law =
-    pathIconWithOptions lawPath { defaultOptions | name = "law", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions lawPath "0 0 14 16" { defaultOptions | name = "law", width = 14 }
 
 {-|
 -}
@@ -1288,7 +1281,7 @@ lawPath =
 -}
 lightBulb : Html msg
 lightBulb =
-    pathIconWithOptions lightBulbPath { defaultOptions | name = "lightBulb", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions lightBulbPath "0 0 12 16" { defaultOptions | name = "lightBulb", width = 12 }
 
 {-|
 -}
@@ -1300,7 +1293,7 @@ lightBulbPath =
 -}
 linkExternal : Html msg
 linkExternal =
-    pathIconWithOptions linkExternalPath { defaultOptions | name = "linkExternal", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions linkExternalPath "0 0 12 16" { defaultOptions | name = "linkExternal", width = 12 }
 
 {-|
 -}
@@ -1312,7 +1305,7 @@ linkExternalPath =
 -}
 link : Html msg
 link =
-    pathIconWithOptions linkPath { defaultOptions | name = "link" }
+    pathIconWithOptions linkPath "0 0 16 16" { defaultOptions | name = "link" }
 
 {-|
 -}
@@ -1324,7 +1317,7 @@ linkPath =
 -}
 listOrdered : Html msg
 listOrdered =
-    pathIconWithOptions listOrderedPath { defaultOptions | name = "listOrdered", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions listOrderedPath "0 0 12 16" { defaultOptions | name = "listOrdered", width = 12 }
 
 {-|
 -}
@@ -1336,7 +1329,7 @@ listOrderedPath =
 -}
 listUnordered : Html msg
 listUnordered =
-    pathIconWithOptions listUnorderedPath { defaultOptions | name = "listUnordered", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions listUnorderedPath "0 0 12 16" { defaultOptions | name = "listUnordered", width = 12 }
 
 {-|
 -}
@@ -1348,7 +1341,7 @@ listUnorderedPath =
 -}
 location : Html msg
 location =
-    pathIconWithOptions locationPath { defaultOptions | name = "location", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions locationPath "0 0 12 16" { defaultOptions | name = "location", width = 12 }
 
 {-|
 -}
@@ -1360,7 +1353,7 @@ locationPath =
 -}
 lock : Html msg
 lock =
-    pathIconWithOptions lockPath { defaultOptions | name = "lock", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions lockPath "0 0 12 16" { defaultOptions | name = "lock", width = 12 }
 
 {-|
 -}
@@ -1372,7 +1365,7 @@ lockPath =
 -}
 logoGist : Html msg
 logoGist =
-    pathIconWithOptions logoGistPath { defaultOptions | name = "logoGist", width = 25, viewBox =  "0 0 25 16" }
+    pathIconWithOptions logoGistPath "0 0 25 16" { defaultOptions | name = "logoGist", width = 25 }
 
 {-|
 -}
@@ -1384,19 +1377,18 @@ logoGistPath =
 -}
 logoGithub : Html msg
 logoGithub =
-    pathIconWithOptions logoGithubPath { defaultOptions | name = "logoGithub", width = 45, viewBox =  "0 0 45 16" }
+    pathIconWithOptions logoGithubPath "0 0 45 16" { defaultOptions | name = "logoGithub", width = 45 }
 
 {-|
 -}
 logoGithubPath : String
 logoGithubPath =
-    "M18.53,12.0301 L18.51,12.0301 C18.519,12.0301 18.525,12.0391 18.534,12.0411 C18.535,12.0411 18.539,12.0401 18.54,12.0401 L18.53,12.0301 Z M18.534,12.0411 C18.441,12.0421 18.207,12.0901 17.96,12.0901 C17.18,12.0901 16.91,11.7301 16.91,11.2601 L16.91,8.1301 L18.5,8.1301 C18.59,8.1301 18.66,8.0501 18.66,7.9401 L18.66,6.2401 C18.66,6.1501 18.58,6.0701 18.5,6.0701 L16.91,6.0701 L16.91,3.9601 C16.91,3.8801 16.86,3.8301 16.77,3.8301 L14.61,3.8301 C14.52,3.8301 14.47,3.8801 14.47,3.9601 L14.47,6.1301 C14.47,6.1301 13.38,6.4001 13.31,6.4101 C13.23,6.4301 13.18,6.5001 13.18,6.5801 L13.18,7.9401 C13.18,8.0501 13.26,8.1301 13.35,8.1301 L14.46,8.1301 L14.46,11.4101 C14.46,13.8501 16.16,14.1001 17.32,14.1001 C17.85,14.1001 18.49,13.9301 18.59,13.8801 C18.65,13.8601 18.68,13.7901 18.68,13.7201 L18.68,12.2201 C18.68,12.1211 18.612,12.0551 18.534,12.0411 L18.534,12.0411 Z M42.23,9.8401 C42.23,8.0301 41.5,7.7901 40.73,7.8701 C40.13,7.9101 39.65,8.2101 39.65,8.2101 L39.65,11.7301 C39.65,11.7301 40.14,12.0701 40.87,12.0901 C41.9,12.1201 42.23,11.7501 42.23,9.8401 L42.23,9.8401 Z M44.66,9.6801 C44.66,13.1101 43.55,14.0901 41.61,14.0901 C39.97,14.0901 39.09,13.2601 39.09,13.2601 C39.09,13.2601 39.05,13.7201 39,13.7801 C38.97,13.8401 38.92,13.8601 38.86,13.8601 L37.38,13.8601 C37.28,13.8601 37.19,13.7801 37.19,13.6901 L37.21,2.5801 C37.21,2.4901 37.29,2.4101 37.38,2.4101 L39.51,2.4101 C39.6,2.4101 39.68,2.4901 39.68,2.5801 L39.68,6.3501 C39.68,6.3501 40.5,5.8201 41.7,5.8201 L41.69,5.8001 C42.89,5.8001 44.66,6.2501 44.66,9.6801 L44.66,9.6801 Z M35.94,6.0701 L35.93,6.0701 L33.84,6.0701 C33.73,6.0701 33.67,6.1501 33.67,6.2601 L33.67,11.7001 C33.67,11.7001 33.12,12.0901 32.37,12.0901 C31.62,12.0901 31.4,11.7501 31.4,11.0001 L31.4,6.2501 C31.4,6.1601 31.32,6.0801 31.23,6.0801 L29.09,6.0801 C29,6.0801 28.92,6.1601 28.92,6.2501 L28.92,11.3601 C28.92,13.5601 30.15,14.1101 31.84,14.1101 C33.23,14.1101 34.36,13.3401 34.36,13.3401 C34.36,13.3401 34.41,13.7301 34.44,13.7901 C34.46,13.8401 34.53,13.8801 34.6,13.8801 L35.94,13.8801 C36.05,13.8801 36.11,13.8001 36.11,13.7101 L36.13,6.2401 C36.13,6.1501 36.05,6.0701 35.94,6.0701 L35.94,6.0701 Z M12.24,6.0601 L10.11,6.0601 C10.02,6.0601 9.94,6.1501 9.94,6.2601 L9.94,13.6001 C9.94,13.8001 10.07,13.8701 10.24,13.8701 L12.16,13.8701 C12.36,13.8701 12.41,13.7801 12.41,13.6001 L12.41,6.2401 L12.41,6.2301 C12.41,6.1401 12.33,6.0601 12.24,6.0601 L12.24,6.0601 Z M11.19,2.6801 C10.42,2.6801 9.81,3.2901 9.81,4.0601 C9.81,4.8301 10.42,5.4401 11.19,5.4401 C11.94,5.4401 12.55,4.8301 12.55,4.0601 C12.55,3.2901 11.94,2.6801 11.19,2.6801 L11.19,2.6801 Z M27.68,2.4301 L25.57,2.4301 C25.48,2.4301 25.4,2.5101 25.4,2.6001 L25.4,6.6901 L22.09,6.6901 L22.09,2.6001 C22.09,2.5101 22.01,2.4301 21.92,2.4301 L19.79,2.4301 C19.7,2.4301 19.62,2.5101 19.62,2.6001 L19.62,13.7101 C19.62,13.8001 19.71,13.8801 19.79,13.8801 L21.92,13.8801 C22.01,13.8801 22.09,13.8001 22.09,13.7101 L22.09,8.9601 L25.4,8.9601 L25.38,13.7101 C25.38,13.8001 25.46,13.8801 25.55,13.8801 L27.68,13.8801 C27.77,13.8801 27.85,13.8001 27.85,13.7101 L27.85,2.6001 C27.85,2.5101 27.77,2.4301 27.68,2.4301 L27.68,2.4301 Z M8.81,7.3501 L8.81,13.0901 C8.81,13.1301 8.8,13.2001 8.75,13.2201 C8.75,13.2201 7.5,14.1101 5.44,14.1101 C2.95,14.1101 0,13.3301 0,8.1901 C0,3.0501 2.58,1.9901 5.1,2.0001 C7.28,2.0001 8.16,2.4901 8.3,2.5801 C8.34,2.6301 8.36,2.6701 8.36,2.7201 L7.94,4.5001 C7.94,4.5901 7.85,4.7001 7.74,4.6701 C7.38,4.5601 6.84,4.3401 5.57,4.3401 C4.1,4.3401 2.52,4.7601 2.52,8.0701 C2.52,11.3801 4.02,11.7701 5.1,11.7701 C6.02,11.7701 6.35,11.6601 6.35,11.6601 L6.35,9.3601 L4.88,9.3601 C4.77,9.3601 4.69,9.2801 4.69,9.1901 L4.69,7.3501 C4.69,7.2601 4.77,7.1801 4.88,7.1801 L8.62,7.1801 C8.73,7.1801 8.81,7.2601 8.81,7.3501 L8.81,7.3501 Z"
-
+    "M18.53 12.03h-.02c.009 0 .015.01.024.011h.006l-.01-.01zm.004.011c-.093.001-.327.05-.574.05-.78 0-1.05-.36-1.05-.83V8.13h1.59c.09 0 .16-.08.16-.19v-1.7c0-.09-.08-.17-.16-.17h-1.59V3.96c0-.08-.05-.13-.14-.13h-2.16c-.09 0-.14.05-.14.13v2.17s-1.09.27-1.16.28c-.08.02-.13.09-.13.17v1.36c0 .11.08.19.17.19h1.11v3.28c0 2.44 1.7 2.69 2.86 2.69.53 0 1.17-.17 1.27-.22.06-.02.09-.09.09-.16v-1.5a.177.177 0 0 0-.146-.18zm23.696-2.2c0-1.81-.73-2.05-1.5-1.97-.6.04-1.08.34-1.08.34v3.52s.49.34 1.22.36c1.03.03 1.36-.34 1.36-2.25zm2.43-.16c0 3.43-1.11 4.41-3.05 4.41-1.64 0-2.52-.83-2.52-.83s-.04.46-.09.52c-.03.06-.08.08-.14.08h-1.48c-.1 0-.19-.08-.19-.17l.02-11.11c0-.09.08-.17.17-.17h2.13c.09 0 .17.08.17.17v3.77s.82-.53 2.02-.53l-.01-.02c1.2 0 2.97.45 2.97 3.88zm-8.72-3.61H33.84c-.11 0-.17.08-.17.19v5.44s-.55.39-1.3.39-.97-.34-.97-1.09V6.25c0-.09-.08-.17-.17-.17h-2.14c-.09 0-.17.08-.17.17v5.11c0 2.2 1.23 2.75 2.92 2.75 1.39 0 2.52-.77 2.52-.77s.05.39.08.45c.02.05.09.09.16.09h1.34c.11 0 .17-.08.17-.17l.02-7.47c0-.09-.08-.17-.19-.17zm-23.7-.01h-2.13c-.09 0-.17.09-.17.2v7.34c0 .2.13.27.3.27h1.92c.2 0 .25-.09.25-.27V6.23c0-.09-.08-.17-.17-.17zm-1.05-3.38c-.77 0-1.38.61-1.38 1.38 0 .77.61 1.38 1.38 1.38.75 0 1.36-.61 1.36-1.38 0-.77-.61-1.38-1.36-1.38zm16.49-.25h-2.11c-.09 0-.17.08-.17.17v4.09h-3.31V2.6c0-.09-.08-.17-.17-.17h-2.13c-.09 0-.17.08-.17.17v11.11c0 .09.09.17.17.17h2.13c.09 0 .17-.08.17-.17V8.96h3.31l-.02 4.75c0 .09.08.17.17.17h2.13c.09 0 .17-.08.17-.17V2.6c0-.09-.08-.17-.17-.17zM8.81 7.35v5.74c0 .04-.01.11-.06.13 0 0-1.25.89-3.31.89-2.49 0-5.44-.78-5.44-5.92S2.58 1.99 5.1 2c2.18 0 3.06.49 3.2.58.04.05.06.09.06.14L7.94 4.5c0 .09-.09.2-.2.17-.36-.11-.9-.33-2.17-.33-1.47 0-3.05.42-3.05 3.73s1.5 3.7 2.58 3.7c.92 0 1.25-.11 1.25-.11v-2.3H4.88c-.11 0-.19-.08-.19-.17V7.35c0-.09.08-.17.19-.17h3.74c.11 0 .19.08.19.17z"
 {-|
 -}
 mailRead : Html msg
 mailRead =
-    pathIconWithOptions mailReadPath { defaultOptions | name = "mailRead", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions mailReadPath "0 0 14 16" { defaultOptions | name = "mailRead", width = 14 }
 
 {-|
 -}
@@ -1408,7 +1400,7 @@ mailReadPath =
 -}
 mailReply : Html msg
 mailReply =
-    pathIconWithOptions mailReplyPath { defaultOptions | name = "mailReply", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions mailReplyPath "0 0 12 16" { defaultOptions | name = "mailReply", width = 12 }
 
 {-|
 -}
@@ -1420,7 +1412,7 @@ mailReplyPath =
 -}
 mail : Html msg
 mail =
-    pathIconWithOptions mailPath { defaultOptions | name = "mail", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions mailPath "0 0 14 16" { defaultOptions | name = "mail", width = 14 }
 
 {-|
 -}
@@ -1432,7 +1424,7 @@ mailPath =
 -}
 markGithub : Html msg
 markGithub =
-    pathIconWithOptions markGithubPath { defaultOptions | name = "markGithub" }
+    pathIconWithOptions markGithubPath "0 0 16 16" { defaultOptions | name = "markGithub" }
 
 {-|
 -}
@@ -1444,7 +1436,7 @@ markGithubPath =
 -}
 markdown : Html msg
 markdown =
-    pathIconWithOptions markdownPath { defaultOptions | name = "markdown" }
+    pathIconWithOptions markdownPath "0 0 16 16" { defaultOptions | name = "markdown" }
 
 {-|
 -}
@@ -1456,7 +1448,7 @@ markdownPath =
 -}
 megaphone : Html msg
 megaphone =
-    pathIconWithOptions megaphonePath { defaultOptions | name = "megaphone" }
+    pathIconWithOptions megaphonePath "0 0 16 16" { defaultOptions | name = "megaphone" }
 
 {-|
 -}
@@ -1468,7 +1460,7 @@ megaphonePath =
 -}
 mention : Html msg
 mention =
-    pathIconWithOptions mentionPath { defaultOptions | name = "mention", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions mentionPath "0 0 14 16" { defaultOptions | name = "mention", width = 14 }
 
 {-|
 -}
@@ -1480,7 +1472,7 @@ mentionPath =
 -}
 milestone : Html msg
 milestone =
-    pathIconWithOptions milestonePath { defaultOptions | name = "milestone", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions milestonePath "0 0 14 16" { defaultOptions | name = "milestone", width = 14 }
 
 {-|
 -}
@@ -1492,7 +1484,7 @@ milestonePath =
 -}
 mirror : Html msg
 mirror =
-    pathIconWithOptions mirrorPath { defaultOptions | name = "mirror" }
+    pathIconWithOptions mirrorPath "0 0 16 16" { defaultOptions | name = "mirror" }
 
 {-|
 -}
@@ -1504,7 +1496,7 @@ mirrorPath =
 -}
 mortarBoard : Html msg
 mortarBoard =
-    pathIconWithOptions mortarBoardPath { defaultOptions | name = "mortarBoard" }
+    pathIconWithOptions mortarBoardPath "0 0 16 16" { defaultOptions | name = "mortarBoard" }
 
 {-|
 -}
@@ -1516,7 +1508,7 @@ mortarBoardPath =
 -}
 mute : Html msg
 mute =
-    pathIconWithOptions mutePath { defaultOptions | name = "mute" }
+    pathIconWithOptions mutePath "0 0 16 16" { defaultOptions | name = "mute" }
 
 {-|
 -}
@@ -1528,7 +1520,7 @@ mutePath =
 -}
 noNewline : Html msg
 noNewline =
-    pathIconWithOptions noNewlinePath { defaultOptions | name = "noNewline" }
+    pathIconWithOptions noNewlinePath "0 0 16 16" { defaultOptions | name = "noNewline" }
 
 {-|
 -}
@@ -1540,7 +1532,7 @@ noNewlinePath =
 -}
 note : Html msg
 note =
-    pathIconWithOptions notePath { defaultOptions | name = "note", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions notePath "0 0 14 16" { defaultOptions | name = "note", width = 14 }
 
 {-|
 -}
@@ -1552,7 +1544,7 @@ notePath =
 -}
 octoface : Html msg
 octoface =
-    pathIconWithOptions octofacePath { defaultOptions | name = "octoface" }
+    pathIconWithOptions octofacePath "0 0 16 16" { defaultOptions | name = "octoface" }
 
 {-|
 -}
@@ -1564,7 +1556,7 @@ octofacePath =
 -}
 organization : Html msg
 organization =
-    pathIconWithOptions organizationPath { defaultOptions | name = "organization" }
+    pathIconWithOptions organizationPath "0 0 16 16" { defaultOptions | name = "organization" }
 
 {-|
 -}
@@ -1576,7 +1568,7 @@ organizationPath =
 -}
 package : Html msg
 package =
-    pathIconWithOptions packagePath { defaultOptions | name = "package" }
+    pathIconWithOptions packagePath "0 0 16 16" { defaultOptions | name = "package" }
 
 {-|
 -}
@@ -1588,7 +1580,7 @@ packagePath =
 -}
 paintcan : Html msg
 paintcan =
-    pathIconWithOptions paintcanPath { defaultOptions | name = "paintcan", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions paintcanPath "0 0 12 16" { defaultOptions | name = "paintcan", width = 12 }
 
 {-|
 -}
@@ -1600,7 +1592,7 @@ paintcanPath =
 -}
 pencil : Html msg
 pencil =
-    pathIconWithOptions pencilPath { defaultOptions | name = "pencil", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions pencilPath "0 0 14 16" { defaultOptions | name = "pencil", width = 14 }
 
 {-|
 -}
@@ -1612,7 +1604,7 @@ pencilPath =
 -}
 person : Html msg
 person =
-    pathIconWithOptions personPath { defaultOptions | name = "person", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions personPath "0 0 12 16" { defaultOptions | name = "person", width = 12 }
 
 {-|
 -}
@@ -1624,7 +1616,7 @@ personPath =
 -}
 pin : Html msg
 pin =
-    pathIconWithOptions pinPath { defaultOptions | name = "pin" }
+    pathIconWithOptions pinPath "0 0 16 16" { defaultOptions | name = "pin" }
 
 {-|
 -}
@@ -1636,7 +1628,7 @@ pinPath =
 -}
 plug : Html msg
 plug =
-    pathIconWithOptions plugPath { defaultOptions | name = "plug", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions plugPath "0 0 14 16" { defaultOptions | name = "plug", width = 14 }
 
 {-|
 -}
@@ -1648,7 +1640,7 @@ plugPath =
 -}
 plusSmall : Html msg
 plusSmall =
-    pathIconWithOptions plusSmallPath { defaultOptions | name = "plusSmall", width = 7, viewBox =  "0 0 7 16" }
+    pathIconWithOptions plusSmallPath "0 0 7 16" { defaultOptions | name = "plusSmall", width = 7 }
 
 {-|
 -}
@@ -1660,7 +1652,7 @@ plusSmallPath =
 -}
 plus : Html msg
 plus =
-    polygonIconWithOptions plusPolygon { defaultOptions | name = "plus", width = 12, viewBox =  "0 0 12 16" }
+    polygonIconWithOptions plusPolygon "0 0 12 16" { defaultOptions | name = "plus", width = 12 }
 
 {-|
 -}
@@ -1672,7 +1664,7 @@ plusPolygon =
 -}
 primitiveDot : Html msg
 primitiveDot =
-    pathIconWithOptions primitiveDotPath { defaultOptions | name = "primitiveDot", width = 8, viewBox =  "0 0 8 16" }
+    pathIconWithOptions primitiveDotPath "0 0 8 16" { defaultOptions | name = "primitiveDot", width = 8 }
 
 {-|
 -}
@@ -1684,7 +1676,7 @@ primitiveDotPath =
 -}
 primitiveSquare : Html msg
 primitiveSquare =
-    polygonIconWithOptions primitiveSquarePolygon { defaultOptions | name = "primitiveSquare", width = 8, viewBox =  "0 0 8 16" }
+    polygonIconWithOptions primitiveSquarePolygon "0 0 8 16" { defaultOptions | name = "primitiveSquare", width = 8 }
 
 {-|
 -}
@@ -1696,7 +1688,7 @@ primitiveSquarePolygon =
 -}
 project : Html msg
 project =
-    pathIconWithOptions projectPath { defaultOptions | name = "project", width = 15, viewBox =  "0 0 15 16" }
+    pathIconWithOptions projectPath "0 0 15 16" { defaultOptions | name = "project", width = 15 }
 
 {-|
 -}
@@ -1708,7 +1700,7 @@ projectPath =
 -}
 pulse : Html msg
 pulse =
-    polygonIconWithOptions pulsePolygon { defaultOptions | name = "pulse", width = 14, viewBox =  "0 0 14 16" }
+    polygonIconWithOptions pulsePolygon "0 0 14 16" { defaultOptions | name = "pulse", width = 14 }
 
 {-|
 -}
@@ -1720,7 +1712,7 @@ pulsePolygon =
 -}
 question : Html msg
 question =
-    pathIconWithOptions questionPath { defaultOptions | name = "question", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions questionPath "0 0 14 16" { defaultOptions | name = "question", width = 14 }
 
 {-|
 -}
@@ -1732,7 +1724,7 @@ questionPath =
 -}
 quote : Html msg
 quote =
-    pathIconWithOptions quotePath { defaultOptions | name = "quote", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions quotePath "0 0 14 16" { defaultOptions | name = "quote", width = 14 }
 
 {-|
 -}
@@ -1744,7 +1736,7 @@ quotePath =
 -}
 radioTower : Html msg
 radioTower =
-    pathIconWithOptions radioTowerPath { defaultOptions | name = "radioTower" }
+    pathIconWithOptions radioTowerPath "0 0 16 16" { defaultOptions | name = "radioTower" }
 
 {-|
 -}
@@ -1756,7 +1748,7 @@ radioTowerPath =
 -}
 reply : Html msg
 reply =
-    pathIconWithOptions replyPath { defaultOptions | name = "reply", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions replyPath "0 0 14 16" { defaultOptions | name = "reply", width = 14 }
 
 {-|
 -}
@@ -1768,7 +1760,7 @@ replyPath =
 -}
 repoClone : Html msg
 repoClone =
-    pathIconWithOptions repoClonePath { defaultOptions | name = "repoClone" }
+    pathIconWithOptions repoClonePath "0 0 16 16" { defaultOptions | name = "repoClone" }
 
 {-|
 -}
@@ -1780,7 +1772,7 @@ repoClonePath =
 -}
 repoForcePush : Html msg
 repoForcePush =
-    pathIconWithOptions repoForcePushPath { defaultOptions | name = "repoForcePush", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions repoForcePushPath "0 0 12 16" { defaultOptions | name = "repoForcePush", width = 12 }
 
 {-|
 -}
@@ -1792,7 +1784,7 @@ repoForcePushPath =
 -}
 repoForked : Html msg
 repoForked =
-    pathIconWithOptions repoForkedPath { defaultOptions | name = "repoForked", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions repoForkedPath "0 0 10 16" { defaultOptions | name = "repoForked", width = 10 }
 
 {-|
 -}
@@ -1804,7 +1796,7 @@ repoForkedPath =
 -}
 repoPull : Html msg
 repoPull =
-    pathIconWithOptions repoPullPath { defaultOptions | name = "repoPull" }
+    pathIconWithOptions repoPullPath "0 0 16 16" { defaultOptions | name = "repoPull" }
 
 {-|
 -}
@@ -1816,7 +1808,7 @@ repoPullPath =
 -}
 repoPush : Html msg
 repoPush =
-    pathIconWithOptions repoPushPath { defaultOptions | name = "repoPush", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions repoPushPath "0 0 12 16" { defaultOptions | name = "repoPush", width = 12 }
 
 {-|
 -}
@@ -1828,7 +1820,7 @@ repoPushPath =
 -}
 repo : Html msg
 repo =
-    pathIconWithOptions repoPath { defaultOptions | name = "repo", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions repoPath "0 0 12 16" { defaultOptions | name = "repo", width = 12 }
 
 {-|
 -}
@@ -1840,7 +1832,7 @@ repoPath =
 -}
 rocket : Html msg
 rocket =
-    pathIconWithOptions rocketPath { defaultOptions | name = "rocket" }
+    pathIconWithOptions rocketPath "0 0 16 16" { defaultOptions | name = "rocket" }
 
 {-|
 -}
@@ -1852,7 +1844,7 @@ rocketPath =
 -}
 rss : Html msg
 rss =
-    pathIconWithOptions rssPath { defaultOptions | name = "rss", width = 10, viewBox =  "0 0 10 16" }
+    pathIconWithOptions rssPath "0 0 10 16" { defaultOptions | name = "rss", width = 10 }
 
 {-|
 -}
@@ -1864,7 +1856,7 @@ rssPath =
 -}
 ruby : Html msg
 ruby =
-    pathIconWithOptions rubyPath { defaultOptions | name = "ruby" }
+    pathIconWithOptions rubyPath "0 0 16 16" { defaultOptions | name = "ruby" }
 
 {-|
 -}
@@ -1876,7 +1868,7 @@ rubyPath =
 -}
 screenFull : Html msg
 screenFull =
-    pathIconWithOptions screenFullPath { defaultOptions | name = "screenFull", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions screenFullPath "0 0 14 16" { defaultOptions | name = "screenFull", width = 14 }
 
 {-|
 -}
@@ -1888,7 +1880,7 @@ screenFullPath =
 -}
 screenNormal : Html msg
 screenNormal =
-    pathIconWithOptions screenNormalPath { defaultOptions | name = "screenNormal", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions screenNormalPath "0 0 14 16" { defaultOptions | name = "screenNormal", width = 14 }
 
 {-|
 -}
@@ -1900,7 +1892,7 @@ screenNormalPath =
 -}
 search : Html msg
 search =
-    pathIconWithOptions searchPath { defaultOptions | name = "search" }
+    pathIconWithOptions searchPath "0 0 16 16" { defaultOptions | name = "search" }
 
 {-|
 -}
@@ -1912,7 +1904,7 @@ searchPath =
 -}
 server : Html msg
 server =
-    pathIconWithOptions serverPath { defaultOptions | name = "server", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions serverPath "0 0 12 16" { defaultOptions | name = "server", width = 12 }
 
 {-|
 -}
@@ -1924,7 +1916,7 @@ serverPath =
 -}
 settings : Html msg
 settings =
-    pathIconWithOptions settingsPath { defaultOptions | name = "settings" }
+    pathIconWithOptions settingsPath "0 0 16 16" { defaultOptions | name = "settings" }
 
 {-|
 -}
@@ -1936,7 +1928,7 @@ settingsPath =
 -}
 shield : Html msg
 shield =
-    pathIconWithOptions shieldPath { defaultOptions | name = "shield", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions shieldPath "0 0 14 16" { defaultOptions | name = "shield", width = 14 }
 
 {-|
 -}
@@ -1948,7 +1940,7 @@ shieldPath =
 -}
 signIn : Html msg
 signIn =
-    pathIconWithOptions signInPath { defaultOptions | name = "signIn", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions signInPath "0 0 14 16" { defaultOptions | name = "signIn", width = 14 }
 
 {-|
 -}
@@ -1960,7 +1952,7 @@ signInPath =
 -}
 signOut : Html msg
 signOut =
-    pathIconWithOptions signOutPath { defaultOptions | name = "signOut" }
+    pathIconWithOptions signOutPath "0 0 16 16" { defaultOptions | name = "signOut" }
 
 {-|
 -}
@@ -1972,7 +1964,7 @@ signOutPath =
 -}
 smiley : Html msg
 smiley =
-    pathIconWithOptions smileyPath { defaultOptions | name = "smiley" }
+    pathIconWithOptions smileyPath "0 0 16 16" { defaultOptions | name = "smiley" }
 
 {-|
 -}
@@ -1984,7 +1976,7 @@ smileyPath =
 -}
 squirrel : Html msg
 squirrel =
-    pathIconWithOptions squirrelPath { defaultOptions | name = "squirrel" }
+    pathIconWithOptions squirrelPath "0 0 16 16" { defaultOptions | name = "squirrel" }
 
 {-|
 -}
@@ -1996,7 +1988,7 @@ squirrelPath =
 -}
 star : Html msg
 star =
-    polygonIconWithOptions starPolygon { defaultOptions | name = "star", width = 14, viewBox =  "0 0 14 16" }
+    polygonIconWithOptions starPolygon "0 0 14 16" { defaultOptions | name = "star", width = 14 }
 
 {-|
 -}
@@ -2008,7 +2000,7 @@ starPolygon =
 -}
 stop : Html msg
 stop =
-    pathIconWithOptions stopPath { defaultOptions | name = "stop", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions stopPath "0 0 14 16" { defaultOptions | name = "stop", width = 14 }
 
 {-|
 -}
@@ -2020,7 +2012,7 @@ stopPath =
 -}
 sync : Html msg
 sync =
-    pathIconWithOptions syncPath { defaultOptions | name = "sync", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions syncPath "0 0 12 16" { defaultOptions | name = "sync", width = 12 }
 
 {-|
 -}
@@ -2032,7 +2024,7 @@ syncPath =
 -}
 tag : Html msg
 tag =
-    pathIconWithOptions tagPath { defaultOptions | name = "tag", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions tagPath "0 0 14 16" { defaultOptions | name = "tag", width = 14 }
 
 {-|
 -}
@@ -2044,7 +2036,7 @@ tagPath =
 -}
 tasklist : Html msg
 tasklist =
-    pathIconWithOptions tasklistPath { defaultOptions | name = "tasklist" }
+    pathIconWithOptions tasklistPath "0 0 16 16" { defaultOptions | name = "tasklist" }
 
 {-|
 -}
@@ -2056,7 +2048,7 @@ tasklistPath =
 -}
 telescope : Html msg
 telescope =
-    pathIconWithOptions telescopePath { defaultOptions | name = "telescope", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions telescopePath "0 0 14 16" { defaultOptions | name = "telescope", width = 14 }
 
 {-|
 -}
@@ -2068,7 +2060,7 @@ telescopePath =
 -}
 terminal : Html msg
 terminal =
-    pathIconWithOptions terminalPath { defaultOptions | name = "terminal", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions terminalPath "0 0 14 16" { defaultOptions | name = "terminal", width = 14 }
 
 {-|
 -}
@@ -2080,7 +2072,7 @@ terminalPath =
 -}
 textSize : Html msg
 textSize =
-    pathIconWithOptions textSizePath { defaultOptions | name = "textSize", width = 18, viewBox =  "0 0 18 16" }
+    pathIconWithOptions textSizePath "0 0 18 16" { defaultOptions | name = "textSize", width = 18 }
 
 {-|
 -}
@@ -2092,7 +2084,7 @@ textSizePath =
 -}
 threeBars : Html msg
 threeBars =
-    pathIconWithOptions threeBarsPath { defaultOptions | name = "threeBars", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions threeBarsPath "0 0 12 16" { defaultOptions | name = "threeBars", width = 12 }
 
 {-|
 -}
@@ -2104,7 +2096,7 @@ threeBarsPath =
 -}
 thumbsdown : Html msg
 thumbsdown =
-    pathIconWithOptions thumbsdownPath { defaultOptions | name = "thumbsdown" }
+    pathIconWithOptions thumbsdownPath "0 0 16 16" { defaultOptions | name = "thumbsdown" }
 
 {-|
 -}
@@ -2116,7 +2108,7 @@ thumbsdownPath =
 -}
 thumbsup : Html msg
 thumbsup =
-    pathIconWithOptions thumbsupPath { defaultOptions | name = "thumbsup" }
+    pathIconWithOptions thumbsupPath "0 0 16 16" { defaultOptions | name = "thumbsup" }
 
 {-|
 -}
@@ -2128,7 +2120,7 @@ thumbsupPath =
 -}
 tools : Html msg
 tools =
-    pathIconWithOptions toolsPath { defaultOptions | name = "tools" }
+    pathIconWithOptions toolsPath "0 0 16 16" { defaultOptions | name = "tools" }
 
 {-|
 -}
@@ -2140,7 +2132,7 @@ toolsPath =
 -}
 trashcan : Html msg
 trashcan =
-    pathIconWithOptions trashcanPath { defaultOptions | name = "trashcan", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions trashcanPath "0 0 12 16" { defaultOptions | name = "trashcan", width = 12 }
 
 {-|
 -}
@@ -2152,7 +2144,7 @@ trashcanPath =
 -}
 triangleDown : Html msg
 triangleDown =
-    polygonIconWithOptions triangleDownPolygon { defaultOptions | name = "triangleDown", width = 12, viewBox =  "0 0 12 16" }
+    polygonIconWithOptions triangleDownPolygon "0 0 12 16" { defaultOptions | name = "triangleDown", width = 12 }
 
 {-|
 -}
@@ -2164,7 +2156,7 @@ triangleDownPolygon =
 -}
 triangleLeft : Html msg
 triangleLeft =
-    polygonIconWithOptions triangleLeftPolygon { defaultOptions | name = "triangleLeft", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions triangleLeftPolygon "0 0 6 16" { defaultOptions | name = "triangleLeft", width = 6 }
 
 {-|
 -}
@@ -2176,7 +2168,7 @@ triangleLeftPolygon =
 -}
 triangleRight : Html msg
 triangleRight =
-    polygonIconWithOptions triangleRightPolygon { defaultOptions | name = "triangleRight", width = 6, viewBox =  "0 0 6 16" }
+    polygonIconWithOptions triangleRightPolygon "0 0 6 16" { defaultOptions | name = "triangleRight", width = 6 }
 
 {-|
 -}
@@ -2188,7 +2180,7 @@ triangleRightPolygon =
 -}
 triangleUp : Html msg
 triangleUp =
-    polygonIconWithOptions triangleUpPolygon { defaultOptions | name = "triangleUp", width = 12, viewBox =  "0 0 12 16" }
+    polygonIconWithOptions triangleUpPolygon "0 0 12 16" { defaultOptions | name = "triangleUp", width = 12 }
 
 {-|
 -}
@@ -2200,7 +2192,7 @@ triangleUpPolygon =
 -}
 unfold : Html msg
 unfold =
-    pathIconWithOptions unfoldPath { defaultOptions | name = "unfold", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions unfoldPath "0 0 14 16" { defaultOptions | name = "unfold", width = 14 }
 
 {-|
 -}
@@ -2212,7 +2204,7 @@ unfoldPath =
 -}
 unmute : Html msg
 unmute =
-    pathIconWithOptions unmutePath { defaultOptions | name = "unmute" }
+    pathIconWithOptions unmutePath "0 0 16 16" { defaultOptions | name = "unmute" }
 
 {-|
 -}
@@ -2224,7 +2216,7 @@ unmutePath =
 -}
 unverified : Html msg
 unverified =
-    pathIconWithOptions unverifiedPath { defaultOptions | name = "unverified" }
+    pathIconWithOptions unverifiedPath "0 0 16 16" { defaultOptions | name = "unverified" }
 
 {-|
 -}
@@ -2236,7 +2228,7 @@ unverifiedPath =
 -}
 verified : Html msg
 verified =
-    pathIconWithOptions verifiedPath { defaultOptions | name = "verified" }
+    pathIconWithOptions verifiedPath "0 0 16 16" { defaultOptions | name = "verified" }
 
 {-|
 -}
@@ -2248,7 +2240,7 @@ verifiedPath =
 -}
 versions : Html msg
 versions =
-    pathIconWithOptions versionsPath { defaultOptions | name = "versions", width = 14, viewBox =  "0 0 14 16" }
+    pathIconWithOptions versionsPath "0 0 14 16" { defaultOptions | name = "versions", width = 14 }
 
 {-|
 -}
@@ -2260,7 +2252,7 @@ versionsPath =
 -}
 watch : Html msg
 watch =
-    pathIconWithOptions watchPath { defaultOptions | name = "watch", width = 12, viewBox =  "0 0 12 16" }
+    pathIconWithOptions watchPath "0 0 12 16" { defaultOptions | name = "watch", width = 12 }
 
 {-|
 -}
@@ -2272,7 +2264,7 @@ watchPath =
 -}
 x : Html msg
 x =
-    polygonIconWithOptions xPolygon { defaultOptions | name = "x", width = 12, viewBox =  "0 0 12 16" }
+    polygonIconWithOptions xPolygon "0 0 12 16" { defaultOptions | name = "x", width = 12 }
 
 {-|
 -}
@@ -2284,7 +2276,7 @@ xPolygon =
 -}
 zap : Html msg
 zap =
-    polygonIconWithOptions zapPolygon { defaultOptions | name = "zap", width = 10, viewBox =  "0 0 10 16" }
+    polygonIconWithOptions zapPolygon "0 0 10 16" { defaultOptions | name = "zap", width = 10 }
 
 {-|
 -}
