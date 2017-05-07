@@ -6,8 +6,7 @@ import Svg.Attributes
 
 
 type alias Options =
-    { name : String
-    , color : String
+    { color : String
     , width : Int
     , height : Int
     , fillRule : String
@@ -16,8 +15,8 @@ type alias Options =
     }
 
 
-iconSVG : String -> Options -> List (Svg.Attribute msg) -> List (Svg.Svg msg) -> Html.Html msg
-iconSVG viewBox options attributes children =
+iconSVG : String -> String -> Options -> List (Svg.Attribute msg) -> List (Svg.Svg msg) -> Html.Html msg
+iconSVG viewBox name options attributes children =
     let
         style =
             case options.style of
@@ -46,7 +45,7 @@ iconSVG viewBox options attributes children =
         Svg.svg
             (List.concat
                 [ [ Svg.Attributes.version "1.1"
-                  , Svg.Attributes.class ("octicon " ++ options.name)
+                  , Svg.Attributes.class ("octicon " ++ name)
                   , Svg.Attributes.width <| toString options.width
                   , Svg.Attributes.height <| toString options.height
                   , Svg.Attributes.viewBox viewBox
