@@ -22,7 +22,7 @@ module Octicons exposing (..)
 @docs history, home, horizontalRule, hubot, inbox, info, issueClosed, issueOpened
 @docs issueReopened, italic, jersey, key, keyboard, law, lightBulb
 @docs link, linkExternal, listOrdered, listUnordered, location, lock
-@docs logoGist, logoGithub, mail, mailRead, mailReply, markGithub
+@docs logoGist, logoGithub, mail, mailRead, mailReply, markGithub, markTor
 @docs markdown, megaphone, mention, milestone, mirror, mortarBoard
 @docs mute, noNewline, note, octoface
 @docs organization, package, paintcan, pencil, person, pin, plug, plus
@@ -60,7 +60,7 @@ module Octicons exposing (..)
 @docs issueClosedPath, issueOpenedPath, issueReopenedPath, italicPath, jerseyPath, keyPath
 @docs keyboardPath, lawPath, lightBulbPath, linkExternalPath, linkPath, listOrderedPath
 @docs listUnorderedPath, locationPath, lockPath, logoGistPath, logoGithubPath, mailPath
-@docs mailReadPath, mailReplyPath, markGithubPath, markdownPath, megaphonePath, mentionPath
+@docs mailReadPath, mailReplyPath, markGithubPath, markTorPath, markdownPath, megaphonePath, mentionPath
 @docs milestonePath, mirrorPath, mortarBoardPath, mutePath, noNewlinePath, notePath
 @docs octofacePath, organizationPath, packagePath, paintcanPath, pencilPath, personPath
 @docs pinPath, plugPath, plusPolygon, plusSmallPath, primitiveDotPath
@@ -1431,6 +1431,17 @@ markGithub =
 markGithubPath : String
 markGithubPath =
     "M8,0 C3.58,0 0,3.58 0,8 C0,11.54 2.29,14.53 5.47,15.59 C5.87,15.66 6.02,15.42 6.02,15.21 C6.02,15.02 6.01,14.39 6.01,13.72 C4,14.09 3.48,13.23 3.32,12.78 C3.23,12.55 2.84,11.84 2.5,11.65 C2.22,11.5 1.82,11.13 2.49,11.12 C3.12,11.11 3.57,11.7 3.72,11.94 C4.44,13.15 5.59,12.81 6.05,12.6 C6.12,12.08 6.33,11.73 6.56,11.53 C4.78,11.33 2.92,10.64 2.92,7.58 C2.92,6.71 3.23,5.99 3.74,5.43 C3.66,5.23 3.38,4.41 3.82,3.31 C3.82,3.31 4.49,3.1 6.02,4.13 C6.66,3.95 7.34,3.86 8.02,3.86 C8.7,3.86 9.38,3.95 10.02,4.13 C11.55,3.09 12.22,3.31 12.22,3.31 C12.66,4.41 12.38,5.23 12.3,5.43 C12.81,5.99 13.12,6.7 13.12,7.58 C13.12,10.65 11.25,11.33 9.47,11.53 C9.76,11.78 10.01,12.26 10.01,13.01 C10.01,14.08 10,14.94 10,15.21 C10,15.42 10.15,15.67 10.55,15.59 C13.71,14.53 16,11.53 16,8 C16,3.58 12.42,0 8,0 L8,0 Z"
+
+markTor : Options -> Html msg
+markTor =
+    pathIconWithOptions markTorPath "0 0 16 16" "markTor"
+
+{-|
+-}
+markTorPath : String
+markTorPath =
+    "m8,0c-4.418 0-8 3.582-8 8-1e-6 4.418 3.582 8 8 8 4.418 0 8-3.582 8-8 1e-6 -4.418-3.582-8-8-8zm1.274 1c-0.7039 0.8177-0.04023 1.3-0.4336 2.118 0.6625-0.9316 2.203-1.252 3.207-1.594-1.319 1.176-2.363 2.728-3.667 3.897l0.8145 0.2617c-0.2691 0.8902 0.1563 1.222 0.415 1.367 0.5797 0.3209 1.138 0.652 1.583 1.056 0.8385 0.766 1.315 1.842 1.315 2.98 0 1.128-0.5182 2.216-1.388 2.94-0.8177 0.6832-1.946 0.9727-3.043 0.9727-0.6832 0-1.294-0.0306-1.956-0.248-1.511-0.5072-2.64-1.802-2.733-3.354-0.08284-1.211 0.1869-2.132 1.129-3.095 0.4864-0.5072 1.121-1.203 1.794-1.669 0.3313-0.2278 0.4902-0.5214-0.1826-1.732l0.5605-0.4707 0.7598 0.5225c-0.2142-1.82-0.6682-1.969 1.825-3.953zm-2.392 4.139c0.07246 0.1035 0.521 0.3372 0.5625 0.4717 0.09315 0.383-0.08415 0.7749-0.167 0.9404-0.4244 0.766-0.8139 0.9959-1.342 1.431-0.9316 0.766-1.869 1.242-1.755 3.343 0.05177 1.035 0.6269 2.317 1.838 2.907 0.2319 0.1124 0.451 0.2018 0.6699 0.2812-0.2116-0.1294-0.3974-0.2823-0.5557-0.4912 0-0.0103-0.06543-0.0684-0.06543-0.0684-0.3799-0.4969-0.7677-1.22-0.8848-1.989-0.06332-0.3106-0.03325-0.5872 0.03906-0.9082 0.3075-1.263 0.6185-1.792 1.2-2.426 0.1538-0.1138 0.2938-0.2946 0.4385-0.4775 0.1574-0.219 0.4313-0.7946 0.626-1.318v-1.618zm1.043 0.1553v9.287c0.2341-0.2521 0.3678-0.5496 0.4541-0.9072 0.2071-0.7965 0.5061-1.649 0.3818-2.147-0.03108-0.1138-0.08121-0.5398-0.2676-0.96-0.2691-0.6039-0.3717-1.109-0.4131-1.223-0.1449-0.3326-0.1371-1.206-0.1475-1.661 0.02069 0.5426 0.3677 1.286 0.4609 1.47 0.05169 0.1138 0.4065 0.6713 0.6963 1.258 0.1967 0.3852 0.2684 0.7767 0.2891 0.8818 0.1552 1.085-0.09449 1.557-0.4258 2.537-0.1458 0.4282-0.5277 0.7958-0.8086 0.9619 0.06345-6e-5 0.1266 6e-5 0.1973-6e-3 1.292-0.9776 1.906-2.875 1.419-5.031-0.2002-0.8509-0.757-1.703-1.308-2.574-0.2129-0.5372-0.1815-1.046-0.1748-1.549-0.141-0.1482-0.2463-0.2403-0.3535-0.3369zm-0.4385 2.416c-0.06122 0.3239-0.1381 0.6324-0.2412 0.8066-0.1441 0.2402-0.181 0.3544-0.3438 0.4785-0.4772 0.6717-0.6342 0.7707-0.9326 1.992-0.06332 0.2588-0.1676 0.6631-0.1133 0.9219 0.1628 0.7452 0.2886 1.258 0.5752 1.796 0 0 0.05566 0.0535 0.05566 0.0742 0.2741 0.3707 0.3102 0.464 1 0.8799z"
+
 
 {-|
 -}

@@ -158,6 +158,7 @@ body {
             , li [] [ a [] [ Octicons.mailReply { defaultOptions | width = 24, height = 32 } ] ]
             , li [] [ a [] [ Octicons.mail { defaultOptions | width = 28, height = 32 } ] ]
             , li [] [ a [] [ Octicons.markGithub { defaultOptions | width = 32, height = 32 } ] ]
+            , li [] [ a [] [ Octicons.markTor { defaultOptions | width = 32, height = 32 } ] ]
             , li [] [ a [] [ Octicons.markdown { defaultOptions | width = 32, height = 32 } ] ]
             , li [] [ a [] [ Octicons.megaphone { defaultOptions | width = 32, height = 32 } ] ]
             , li [] [ a [] [ Octicons.mention { defaultOptions | width = 28, height = 32 } ] ]
